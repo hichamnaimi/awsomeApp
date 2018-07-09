@@ -8,13 +8,38 @@ const PORT = process.env.PORT || 4000;
 const MUSIC_FOLDER_PATH = path.join(__dirname, 'media');
 app.use(cors());
 
-const musicList = {
-  1: 'Dun.mp3',
-  2: 'Grand_Theft_Auto_4.mp3',
-  3: 'GTA_San_Andreas.mp3',
-  4: 'Super_Mario_Bros.mp3',
-  5: 'Tetris_theme.mp3'
-};
+const musicList = [
+  {
+    id: 1,
+    title: 'Dun',
+    description: 'Dun music',
+    link: 'Dun.mp3'
+  },
+  {
+    id: 2,
+    title: 'Grand Theft Auto 4',
+    description: 'The recent famous soundtrack music.',
+    link: 'Grand_Theft_Auto_4.mp3'
+  },
+  {
+    id: 3,
+    title: 'GTA San Andreas',
+    description: 'The most famour soundtrack music.',
+    link: 'GTA_San_Andreas.mp3'
+  },
+  {
+    id: 4,
+    title: 'Super Mario Bros',
+    description: 'Best retro gaming sound ever.',
+    link: 'Super_Mario_Bros.mp3'
+  },
+  {
+    id: 5,
+    title: 'Tetris theme',
+    description: 'From russia, old memories music.',
+    link: 'Tetris_theme.mp3'
+  }
+];
 
 app.get('/', (req, res) => {
   res.status(200).send('Welcome to Ressources server !');
