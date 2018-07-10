@@ -5,6 +5,9 @@ import { addMusic, removeMusic, playPlayistMusic } from '../../logic/actionCreat
 import MusicList from './MusicList';
 import MusicPlayList from './MusicPlaylist';
 
+const savePlaylist = (playlist) => {
+  localStorage.setItem("playlist", JSON.stringify(playlist));
+}
 class MusicContainer extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +16,10 @@ class MusicContainer extends Component {
 
   componentDidMount() {
     this.fetchMusicIfNeeds();
+  }
+
+  componentWillUnmount() {
+    savePlaylist(this.props.musicPlaylist);
   }
 
   shouldComponentUpdate(nextProps) {

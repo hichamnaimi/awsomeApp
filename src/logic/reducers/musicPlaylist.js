@@ -22,7 +22,9 @@ const playPlaylistMusic = (playlistMusic, id) => {
   return filteredPlaylistMusic;
 };
 
-const musicPlaylistReducer = (state = [], action) => {
+const initialState = localStorage.getItem("playlist") ? JSON.parse(localStorage.getItem("playlist")) : [];
+
+const musicPlaylistReducer = (state = initialState, action) => {
   switch(action.type) {
     case ADD_MUSIC:
       return addMusicIfUnique(state, action.payload);
