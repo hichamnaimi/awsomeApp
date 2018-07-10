@@ -17,6 +17,7 @@ class MusicContainer extends Component {
 
   shouldComponentUpdate(nextProps) {
     if (this.props.musicList.items.length !== nextProps.musicList.items.length) return true;
+    if (this.props.musicPlaylist.length !== nextProps.musicPlaylist.length) return true;
     return false;
   }
 
@@ -25,15 +26,14 @@ class MusicContainer extends Component {
   };
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <h1>List</h1>
         <MusicList
           musicListItems={this.props.musicList.items}
+          addMusic={this.props.addMusic}
         />
         <MusicPlayList
-          addMusic={this.props.addMusic}
           musicPlayListItems={this.props.musicPlaylist}
         />
       </div>

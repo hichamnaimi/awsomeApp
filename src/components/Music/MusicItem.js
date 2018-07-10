@@ -27,40 +27,40 @@ const styles = {
   },
 }
 
-const renderAddMusicBtn = () => {
-  return (
-    <div className="musicPlayerContainer" style={styles.addPlaylistBtn}>
-      <i className="fa fa-2x fa-plus" aria-hidden="true"></i>
-    </div>
-  );
-}
-
-const renderPlayMusicBtn = () => {
-  return (
-    <div className="musicPlayerContainer" style={styles.playerBtn}>
-      <i className="fa fa-2x fa-play-circle" aria-hidden="true"></i>
-    </div>
-  );
-}
-
-const renderRemoveMusicBtn = () => {
-  return (
-    <div className="musicPlayerContainer" style={styles.playerBtn}>
-      <i className="fa fa-2x fa-times" aria-hidden="true"></i>
-    </div>
-  );
-}
-
-const MusicItem = ({ item, isPlayList }) => {
-  const strippedStyle = item.id % 2 === 0 ? {backgroundColor: 'white'} : {backgroundColor: '#efefef'};
+const MusicItem = ({ music, isPlayList, addMusic }) => {
+  const strippedStyle = music.id % 2 === 0 ? {backgroundColor: 'white'} : {backgroundColor: '#efefef'};
+  const renderAddMusicBtn = () => {
+    return (
+      <div onClick={addMusic(music)} className="musicPlayerContainer" style={styles.addPlaylistBtn}>
+        <i className="fa fa-2x fa-plus" aria-hidden="true"></i>
+      </div>
+    );
+  }
+  
+  const renderPlayMusicBtn = () => {
+    return (
+      <div className="musicPlayerContainer" style={styles.playerBtn}>
+        <i className="fa fa-2x fa-play-circle" aria-hidden="true"></i>
+      </div>
+    );
+  }
+  
+  const renderRemoveMusicBtn = () => {
+    return (
+      <div className="musicPlayerContainer" style={styles.playerBtn}>
+        <i className="fa fa-2x fa-times" aria-hidden="true"></i>
+      </div>
+    );
+  }
+  
   return (
     <div className="musicItem" style={{...styles.container, ...strippedStyle}}>
       <div style={styles.infosContainer} className="musicInfoContainer">
         <h4 style={styles.title}>
-          {item.title}
+          {music.title}
         </h4>
         <p style={styles.description}>
-          {item.description}
+          {music.description}
         </p>
       </div>
       { isPlayList ? renderRemoveMusicBtn() : renderAddMusicBtn()}

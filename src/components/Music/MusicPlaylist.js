@@ -7,12 +7,18 @@ class MusicPlaylist extends Component {
     this.state = {};
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.musicPlayListItems.length !== nextProps.musicPlayListItems.length) return true;
+    return false;
+  }
+
   renderMusicItems = () => {
     const { musicPlayListItems } = this.props;
-    return musicPlayListItems.map((item) =>
+    return musicPlayListItems.map((music) =>
       <MusicItem
-        key={item.id}
-        {...item}
+        key={music.id}
+        music={music}
+        isPlayList={true}
       />
     );
   }
