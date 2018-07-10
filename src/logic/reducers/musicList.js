@@ -12,7 +12,6 @@ const initialState = {
 }
 
 const playListMusic = (listMusic, id) => {
-  console.log('@@@@ ID ID ID :: ', id);
   const concernedMusic = listMusic.find((music) => music.id === id);
   const filteredMusicList = listMusic.filter((music) => music.id !== id);
   filteredMusicList.unshift(concernedMusic);

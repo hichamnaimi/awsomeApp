@@ -9,11 +9,12 @@ class MusicPlaylist extends Component {
 
   shouldComponentUpdate(nextProps) {
     if (this.props.musicPlayListItems.length !== nextProps.musicPlayListItems.length) return true;
+    if (this.props.musicPlayListItems !== nextProps.musicPlayListItems) return true;
     return false;
   }
 
   renderMusicItems = () => {
-    const { musicPlayListItems, removeMusic } = this.props;
+    const { musicPlayListItems, removeMusic, playPlayistMusic } = this.props;
     return musicPlayListItems.map((music, index) =>
       <MusicItem
         key={music.id}
@@ -21,6 +22,7 @@ class MusicPlaylist extends Component {
         music={music}
         isPlayList={true}
         removeMusic={removeMusic}
+        playPlayistMusic={playPlayistMusic}
       />
     );
   }

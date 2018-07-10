@@ -25,7 +25,8 @@ class MusicList extends Component {
 
   shouldComponentUpdate(nextProps) {
     if (this.props.musicListItems.length !== nextProps.musicListItems.length) return true;
-    return true;
+    if (this.props.musicListItems !== nextProps.musicListItems) return true;
+    return false;
   }
 
   renderMusicListItems = () => {
