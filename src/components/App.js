@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from '../logic/reducers/rootReducer';
+import Navigation from './Navigation';
 import MusicContainer from '../components/Music/MusicContainer';
 
 const store = createStore(rootReducer,
@@ -14,16 +15,6 @@ const store = createStore(rootReducer,
     )
   )
 );
-
-const Navigation = (props) => (
-  <nav>
-    <ul>
-      <li><NavLink to="/">Home</NavLink></li>
-      <li><NavLink to="/music">Music</NavLink></li>
-      {props.children}
-    </ul>
-  </nav>
-)
 
 const Welcome = () => <h1>Welcome</h1>
 

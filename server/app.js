@@ -53,8 +53,8 @@ app.get('/music', (req, res) => {
 });
 
 app.get('/music/:id', (req, res) => {
-  const musicId = req.params.id;
-  const musicPath = path.join(MUSIC_FOLDER_PATH, musicList[musicId]);
+  const musicId = req.params.id - 1;
+  const musicPath = path.join(MUSIC_FOLDER_PATH, musicList[musicId].link);
   const musicStat = fs.statSync(musicPath);
   const musicTotalSize = musicStat.size;
   const range = req.headers.range;
