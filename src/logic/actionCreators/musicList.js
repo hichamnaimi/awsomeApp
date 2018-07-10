@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { playMusicSound } from '../helpers/playMusicSound';
+import musicSound from '../helpers/musicSound';
 import {
   FETCH_MUSIC,
   FETCH_MUSIC_SUCCESS,
@@ -54,7 +54,7 @@ export const playListMusic = (id) => {
     return fetch(`http://localhost:4000/music/${id}`)
       .then(result => result.arrayBuffer())
       .then((buffer) => {
-        playMusicSound(buffer);
+        musicSound.play(buffer);
         dispatch(changeOrderOfPlayedMusic(id));
       });
   }

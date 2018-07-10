@@ -1,4 +1,4 @@
-import { playMusicSound } from '../helpers/playMusicSound';
+import musicSound from '../helpers/musicSound';
 import {
   ADD_MUSIC,
   REMOVE_MUSIC,
@@ -28,7 +28,7 @@ export const playPlayistMusic = (id) => {
     return fetch(`http://localhost:4000/music/${id}`)
       .then(result => result.arrayBuffer())
       .then((buffer) => {
-        playMusicSound(buffer);
+        musicSound.play(buffer);
         dispatch(changeOrderOfPlayedMusic(id));
       });
   }
