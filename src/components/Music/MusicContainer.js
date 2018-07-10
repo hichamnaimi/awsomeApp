@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchMusicIfNeeds } from '../../logic/actionCreators/musicList';
-import { addMusic } from '../../logic/actionCreators/musicPlaylist';
+import { addMusic, removeMusic } from '../../logic/actionCreators/musicPlaylist';
 import MusicList from './MusicList';
 import MusicPlayList from './MusicPlaylist';
 
@@ -35,6 +35,7 @@ class MusicContainer extends Component {
         />
         <MusicPlayList
           musicPlayListItems={this.props.musicPlaylist}
+          removeMusic={this.props.removeMusic}
         />
       </div>
     )
@@ -48,7 +49,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchMusicIfNeeds: () => dispatch(fetchMusicIfNeeds()),
-  addMusic: (music) => () => dispatch(addMusic(music))
+  addMusic: (music) => () => dispatch(addMusic(music)),
+  removeMusic: (id) => () => dispatch(removeMusic(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MusicContainer);
