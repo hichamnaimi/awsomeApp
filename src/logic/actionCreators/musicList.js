@@ -2,7 +2,8 @@ import fetch from 'cross-fetch';
 import {
   FETCH_MUSIC,
   FETCH_MUSIC_SUCCESS,
-  FETCH_MUSIC_FAILURE
+  FETCH_MUSIC_FAILURE,
+  PLAY_LIST_MUSIC
 } from '../actionTypes/musicList';
 
 
@@ -39,3 +40,10 @@ export const fetchMusicIfNeeds = () => {
     return musicList;
   }
 }
+
+export const playListMusic = (id) => {
+  return {
+    type: PLAY_LIST_MUSIC,
+    payload: id
+  }
+};
