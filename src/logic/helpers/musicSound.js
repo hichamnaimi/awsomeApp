@@ -1,15 +1,19 @@
 export const musicSound = () => {
   let audioCtx = null;
-  let buffer = null;
+  let savedBuffer = null;
   let audioBuffer = null;
   let bufferSource = null;
   return {
     play: async (buffer) => {
+      if (bufferSource && bufferSource.buffer.length) {
+        bufferSource.stop();
+      }
       audioCtx = new AudioContext();
-      buffer = buffer;
+      savedBuffer = buffer;
       audioBuffer = await audioCtx.decodeAudioData(buffer);
       bufferSource = audioCtx.createBufferSource();
       bufferSource.buffer = audioBuffer;
+      bufferSource.buffer.length
       bufferSource.connect(audioCtx.destination);
       bufferSource.start();
     },
