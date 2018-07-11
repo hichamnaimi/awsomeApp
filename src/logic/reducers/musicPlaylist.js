@@ -18,8 +18,12 @@ const removeMusicById = (state, id) => {
 const playPlaylistMusic = (playlistMusic, id) => {
   const concernedMusic = playlistMusic.find((music) => music.id === id);
   const filteredPlaylistMusic = playlistMusic.filter((music) => music.id !== id);
-  filteredPlaylistMusic.unshift(concernedMusic);
-  return filteredPlaylistMusic;
+  return concernedMusic ? [concernedMusic, ...filteredPlaylistMusic] : playlistMusic;
+};
+
+const hightlightPlayingMusic = (playlistMusic, id) => {
+  const concernedMusic = playlistMusic.find((music) => music.id === id);
+
 };
 
 const initialState = localStorage.getItem("playlist") ? JSON.parse(localStorage.getItem("playlist")) : [];
@@ -32,6 +36,8 @@ const musicPlaylistReducer = (state = initialState, action) => {
       return removeMusicById(state, action.payload);
     case PLAY_PLAYLIST_MUSIC:
       return playPlaylistMusic(state, action.payload);
+    case HIGHTLIGHT_PLAYING_MUSIC:
+      return hightlightPlayingMusic(state, action.payload);
     default:
       return state;
   }

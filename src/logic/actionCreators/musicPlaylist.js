@@ -2,7 +2,8 @@ import musicSound from '../helpers/musicSound';
 import {
   ADD_MUSIC,
   REMOVE_MUSIC,
-  PLAY_PLAYLIST_MUSIC
+  PLAY_PLAYLIST_MUSIC,
+  PLAY_MUSIC
 } from '../actionTypes/musicPlaylist';
 
 
@@ -23,11 +24,17 @@ const changeOrderOfPlayedMusic = (id) => {
   }
 }
 
+const highlightPlayingMusic = (id, isPlaying) => ({
+  type: HIGHTLIGHT_PLAYING_MUSIC,
+  payload: { id, isPlaying }
+});
+
 export const playPlayistMusic = (id) => {
   return (dispatch, getState) => {
     const { musicPlaylist } = getState();
     dispatch(changeOrderOfPlayedMusic(id));
-    const afterEachMusic = (nextMusic) => dispatch(changeOrderOfPlayedMusic(nextMusic.value.id));
-    musicSound.autoPlayMusic(id, musicPlaylist, afterEachMusic);
+    const beforeEachMusic = (nextMusic) => dispatch(highlightPlayingMusic(nextMusic.id, true));
+    const afterEachMusic = (previousMusic) => dispatch(highlightPlayingMusic(previousMusic.id, false));
+    musicSound.autoPlayMusic(id, musicPlaylist, beforeEachMusic, afterEachMusic);
   }
 };

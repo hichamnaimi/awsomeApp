@@ -19,7 +19,7 @@ export const musicSound = (() => {
         bufferSource.disconnect();
       }
     },
-    autoPlayMusic: (currentMusicId, musicPlaylist, afterEachMusicCallback) => {
+    autoPlayMusic: (currentMusicId, musicPlaylist, beforeEachMusicCallback, afterEachMusicCallback) => {
       const restOfPlaylistMusic = musicPlaylist.filter(music => music.id !== currentMusicId);
       const restOfPlaylistMusicIterator = restOfPlaylistMusic.values();
       const _autoPlayMusic = (url = `http://localhost:4000/music/${currentMusicId}`) => {
@@ -30,7 +30,7 @@ export const musicSound = (() => {
           const nextMusic = restOfPlaylistMusicIterator.next();
           bufferSource.onended = () => {
             if (!nextMusic.done) {
-              afterEachMusicCallback(nextMusic);
+              afterEachMusicCallback(nextMusic.value);
               _autoPlayMusic(`http://localhost:4000/music/${nextMusic.value.id}`);
             }
           }
