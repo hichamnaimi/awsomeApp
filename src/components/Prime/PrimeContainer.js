@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
 import PrimeHistory from './PrimeHistory'
 
+const savePrimeHistory = (history) => {
+  localStorage.setItem("primeHistory", JSON.stringify(history));
+}
 class PrimeContainer extends Component {
   constructor(props) {
     super(props);
     this.inputRef = React.createRef();
     this.state = { primeNumber: null, history: []};
     this.nPrimeNumberCache = {};
+  }
+
+  componentDidMount() {
+    const savedHistory = localStorage.getItem("primeHistory");
+    if (savedHistory) {
+      this.setState({ history: JSON.parse(savedHistory)});
+    }
+  } 
+
+  componentWillUnmount() {
+    savePrimeHistory(this.state.history);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
