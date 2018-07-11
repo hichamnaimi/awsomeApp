@@ -7,6 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from '../logic/reducers/rootReducer';
 import Navigation from './Navigation';
 import MusicContainer from '../components/Music/MusicContainer';
+import PrimeContainer from '../components/Prime/PrimeContainer';
 
 const store = createStore(rootReducer,
   composeWithDevTools(
@@ -26,6 +27,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Welcome} />
             <Route path='/music' component={MusicContainer} />
+            <Route path='/prime' component={PrimeContainer} />
           </Switch>
         </Navigation>
       </Router>

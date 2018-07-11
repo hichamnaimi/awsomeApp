@@ -7,6 +7,7 @@ const Navigation = (props) => (
       <ul>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/music">Music</NavLink></li>
+        <li><NavLink to="/prime">Prime</NavLink></li>
       </ul>
     </nav>
     {props.children}
