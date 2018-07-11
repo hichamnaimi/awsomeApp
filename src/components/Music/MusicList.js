@@ -1,22 +1,6 @@
 import React, { Component } from 'react';
 import MusicItem from './MusicItem';
 
-const styles = {
-  listContainer: {
-    width: '40%'
-  },
-  itemsContainer: {
-    overflow: 'scroll'
-  },
-  addPlaylistBtn: {
-    flex: '1',
-    cursor: 'pointer'
-  },
-  playerBtn: {
-    flex: '1',
-    cursor: 'pointer'
-  },
-}
 class MusicList extends Component {
   constructor(props) {
     super(props);
@@ -44,10 +28,11 @@ class MusicList extends Component {
   }
 
   render() {
+    //overflowY: scroll
     return (
       <div style={{ width: '40%' }} className="musicList">
         <h2>Hole List of shit</h2>
-        <div style={{ overflow: 'scroll' }} className="musicListItems">
+        <div style={{  }} className="musicListItems">
           {this.renderMusicListItems()}
         </div>
       </div>

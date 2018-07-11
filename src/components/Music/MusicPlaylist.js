@@ -28,10 +28,11 @@ class MusicPlaylist extends Component {
   }
 
   render() {
+    // overflowY scroll
     return (
       <div style={{ width: '40%' }}>
         <h2>Hole Add List of shit</h2>
-        <div style={{ overflow: 'scroll' }}>
+        <div style={{  }}>
           {this.renderMusicItems()}
         </div>
       </div>

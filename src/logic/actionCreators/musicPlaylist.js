@@ -24,12 +24,25 @@ const changeOrderOfPlayedMusic = (id) => {
 }
 
 export const playPlayistMusic = (id) => {
-  return (dispatch) => {
-    return fetch(`http://localhost:4000/music/${id}`)
+  return (dispatch, getState) => {
+    const { musicPlaylist } = getState();
+    dispatch(changeOrderOfPlayedMusic(id));
+    const restOfPlaylistMusic = musicPlaylist.filter(music => music.id !== id);
+    const restOfPlaylistMusicIterator = restOfPlaylistMusic.values();
+    const autoPlayMusic = async (url = `http://localhost:4000/music/${id}`) => {
+      return fetch(url)
       .then(result => result.arrayBuffer())
-      .then((buffer) => {
-        musicSound.play(buffer);
-        dispatch(changeOrderOfPlayedMusic(id));
+      .then((buffer) => musicSound.play(buffer))
+      .then(bufferSource => {
+        const nextMusic = restOfPlaylistMusicIterator.next();
+        bufferSource.onended = () => {
+          if (!nextMusic.done) {
+            dispatch(changeOrderOfPlayedMusic(nextMusic.value.id));
+            autoPlayMusic(`http://localhost:4000/music/${nextMusic.value.id}`);
+          }
+        }
       });
+    }
+    autoPlayMusic();
   }
 };
