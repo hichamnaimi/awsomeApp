@@ -29,6 +29,7 @@ const styles = {
 
 const MusicItem = ({ index, music, isPlayList, addMusic, removeMusic, playListMusic, playPlayistMusic }) => {
   const strippedStyle = index % 2 === 0 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'};
+  const playingStyle = music.isPlaying ? {border: '2px solid red'} : {border: 'none'};
   const renderAddMusicBtn = () => {
     return (
       <div onClick={addMusic(music)} className="musicPlayerContainer" style={styles.addPlaylistBtn}>
@@ -55,7 +56,7 @@ const MusicItem = ({ index, music, isPlayList, addMusic, removeMusic, playListMu
   }
   
   return (
-    <div className="musicItem" style={{...styles.container, ...strippedStyle}}>
+    <div className="musicItem" style={{...styles.container, ...strippedStyle, ...playingStyle}}>
       <div style={styles.infosContainer} className="musicInfoContainer">
         <h4 style={styles.title}>
           {music.title}

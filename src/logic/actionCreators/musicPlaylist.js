@@ -2,10 +2,12 @@ import musicSound from '../helpers/musicSound';
 import {
   ADD_MUSIC,
   REMOVE_MUSIC,
-  PLAY_PLAYLIST_MUSIC,
-  PLAY_MUSIC
+  CHANGE_PLAYING_MUSIC_ORDER,
+  PLAY_MUSIC,
+  HIGHTLIGHT_PLAYING_MUSIC
 } from '../actionTypes/musicPlaylist';
 
+let currentMusicId = null;
 
 export const addMusic = (music) => ({
   type: ADD_MUSIC,
@@ -17,9 +19,9 @@ export const removeMusic = (id) => ({
   payload: id
 });
 
-const changeOrderOfPlayedMusic = (id) => {
+const changePlayingMusicOrder = (id) => {
   return {
-    type: PLAY_PLAYLIST_MUSIC,
+    type: CHANGE_PLAYING_MUSIC_ORDER,
     payload: id
   }
 }
@@ -32,9 +34,13 @@ const highlightPlayingMusic = (id, isPlaying) => ({
 export const playPlayistMusic = (id) => {
   return (dispatch, getState) => {
     const { musicPlaylist } = getState();
-    dispatch(changeOrderOfPlayedMusic(id));
-    const beforeEachMusic = (nextMusic) => dispatch(highlightPlayingMusic(nextMusic.id, true));
-    const afterEachMusic = (previousMusic) => dispatch(highlightPlayingMusic(previousMusic.id, false));
+    const currentPlayingMusic = musicPlaylist.find(music => music.isPlaying);
+    if (currentPlayingMusic) {
+      dispatch(highlightPlayingMusic(currentPlayingMusic.id, false));
+    }
+    dispatch(changePlayingMusicOrder(id));
+    const beforeEachMusic = (nextMusicId) => dispatch(highlightPlayingMusic(nextMusicId, true));
+    const afterEachMusic = (previousMusicId) => dispatch(highlightPlayingMusic(previousMusicId, false));
     musicSound.autoPlayMusic(id, musicPlaylist, beforeEachMusic, afterEachMusic);
   }
 };

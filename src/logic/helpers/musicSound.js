@@ -22,21 +22,25 @@ export const musicSound = (() => {
     autoPlayMusic: (currentMusicId, musicPlaylist, beforeEachMusicCallback, afterEachMusicCallback) => {
       const restOfPlaylistMusic = musicPlaylist.filter(music => music.id !== currentMusicId);
       const restOfPlaylistMusicIterator = restOfPlaylistMusic.values();
-      const _autoPlayMusic = (url = `http://localhost:4000/music/${currentMusicId}`) => {
-        return fetch(url)
+      const _autoPlayMusic = (currentMusicId, source) => {
+        return fetch(source)
         .then(result => result.arrayBuffer())
-        .then((buffer) => musicSound.play(buffer))
+        .then((buffer) => {
+          beforeEachMusicCallback(currentMusicId);
+          return musicSound.play(buffer);
+        })
         .then(bufferSource => {
           const nextMusic = restOfPlaylistMusicIterator.next();
           bufferSource.onended = () => {
             if (!nextMusic.done) {
-              afterEachMusicCallback(nextMusic.value);
-              _autoPlayMusic(`http://localhost:4000/music/${nextMusic.value.id}`);
+              afterEachMusicCallback(currentMusicId);
+              _autoPlayMusic(nextMusic.value.id, `http://localhost:4000/music/${nextMusic.value.id}`);
             }
-          }
+          };
         });
-      }
-      _autoPlayMusic();
+      };
+      // begin
+      _autoPlayMusic(currentMusicId, `http://localhost:4000/music/${currentMusicId}`);
     }
   }
 })();
