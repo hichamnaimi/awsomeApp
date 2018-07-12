@@ -19,8 +19,8 @@ export const musicSound = (() => {
         bufferSource.disconnect();
       }
     },
-    autoPlayMusic: (currentMusicId, musicPlaylist, beforeEachMusicCallback, afterEachMusicCallback) => {
-      const restOfPlaylistMusic = musicPlaylist.filter(music => music.id !== currentMusicId);
+    autoPlayMusic: (currentMusicId, musicList, beforeEachMusicCallback, afterEachMusicCallback) => {
+      const restOfPlaylistMusic = musicList.filter(music => music.id !== currentMusicId);
       const restOfPlaylistMusicIterator = restOfPlaylistMusic.values();
       const _autoPlayMusic = (currentMusicId, source) => {
         return fetch(source)

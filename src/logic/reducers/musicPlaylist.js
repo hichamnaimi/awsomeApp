@@ -1,9 +1,6 @@
-import {
-  ADD_MUSIC,
-  REMOVE_MUSIC,
-  CHANGE_PLAYING_MUSIC_ORDER,
-  HIGHTLIGHT_PLAYING_MUSIC
-} from '../actionTypes/musicPlaylist';
+import { ADD_MUSIC, REMOVE_MUSIC } from '../actionTypes/musicPlaylist';
+import { CHANGE_PLAYING_MUSIC_ORDER, HIGHTLIGHT_PLAYING_MUSIC } from '../actionTypes/musicBase';
+import musicBaseReducer from './musicBase';
 
 const addMusicIfUnique = (state, musicToAdd) => {
   const musicAlreadyExists = state.find((music) => music.id === musicToAdd.id);
@@ -16,22 +13,18 @@ const removeMusicById = (state, id) => {
   return filteredState;
 };
 
-const changePlayingMusicOrder = (playlistMusic, id) => {
-  const concernedMusic = playlistMusic.find((music) => music.id === id);
-  const filteredPlaylistMusic = playlistMusic.filter((music) => music.id !== id);
-  return concernedMusic ? [concernedMusic, ...filteredPlaylistMusic] : playlistMusic;
-};
-
-const hightlightPlayingMusic = (playlistMusic, { id, isPlaying }) => {
-  const concernedMusicIndex = playlistMusic.findIndex((music) => music.id === id);
-  if (concernedMusicIndex !== -1) {
-    return [
-      ...playlistMusic.slice(0,concernedMusicIndex),
-      {...playlistMusic[concernedMusicIndex], isPlaying },
-      ...playlistMusic.slice(concernedMusicIndex + 1)
-    ];
+const changePlayingMusicOrder = (playlistMusic, { id, source }) => {
+  if (source === 'playlist') {
+    return musicBaseReducer.changePlayingMusicOrder(playlistMusic, id);
   }
   return playlistMusic;
+};
+
+const hightlightPlayingMusic = (playlistMusic, { id, source, isPlaying }) => {
+  if (source === 'playlist') {
+    return musicBaseReducer.toggleHighlightMusic(playlistMusic, id, isPlaying);
+  }
+  return musicBaseReducer.downlightAnyPlayingMusic(playlistMusic, id);
 };
 
 const initialState = localStorage.getItem("playlist") ? JSON.parse(localStorage.getItem("playlist")) : [];

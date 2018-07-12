@@ -14,7 +14,7 @@ class MusicList extends Component {
   }
 
   renderMusicListItems = () => {
-    const { musicListItems, addMusic, playListMusic } = this.props;
+    const { musicListItems, addMusic, playMusic } = this.props;
     return musicListItems.map((music, index) =>
       <MusicItem
         key={music.id}
@@ -22,7 +22,7 @@ class MusicList extends Component {
         music={music}
         isPlayList={false}
         addMusic={addMusic}
-        playListMusic={playListMusic}
+        playMusic={playMusic}
       />
     );
   }

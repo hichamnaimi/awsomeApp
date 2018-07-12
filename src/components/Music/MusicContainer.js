@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMusicIfNeeds, playListMusic } from '../../logic/actionCreators/musicList';
-import { addMusic, removeMusic, playPlayistMusic } from '../../logic/actionCreators/musicPlaylist';
+import { fetchMusicIfNeeds } from '../../logic/actionCreators/musicList';
+import { addMusic, removeMusic } from '../../logic/actionCreators/musicPlaylist';
+import { playMusic } from '../../logic/actionCreators/musicBase';
+
 import MusicList from './MusicList';
 import MusicPlayList from './MusicPlaylist';
 
@@ -41,12 +43,12 @@ class MusicContainer extends Component {
         <MusicList
           musicListItems={this.props.musicList.items}
           addMusic={this.props.addMusic}
-          playListMusic={this.props.playListMusic}
+          playMusic={this.props.playMusic}
         />
         <MusicPlayList
           musicPlayListItems={this.props.musicPlaylist}
           removeMusic={this.props.removeMusic}
-          playPlayistMusic={this.props.playPlayistMusic}
+          playMusic={this.props.playMusic}
         />
       </div>
     )
@@ -62,8 +64,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchMusicIfNeeds: () => dispatch(fetchMusicIfNeeds()),
   addMusic: (music) => () => dispatch(addMusic(music)),
   removeMusic: (id) => () => dispatch(removeMusic(id)),
-  playListMusic: (id) => () => dispatch(playListMusic(id)),
-  playPlayistMusic: (id) => () => dispatch(playPlayistMusic(id))
+  playMusic: (id, source='list') => () => dispatch(playMusic({ id, source }))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MusicContainer);

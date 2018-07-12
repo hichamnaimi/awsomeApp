@@ -27,7 +27,7 @@ const styles = {
   },
 }
 
-const MusicItem = ({ index, music, isPlayList, addMusic, removeMusic, playListMusic, playPlayistMusic }) => {
+const MusicItem = ({ index, music, isPlayList, addMusic, removeMusic, playMusic }) => {
   const strippedStyle = index % 2 === 0 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'};
   const playingStyle = music.isPlaying ? {border: '2px solid red'} : {border: 'none'};
   const renderAddMusicBtn = () => {
@@ -39,9 +39,9 @@ const MusicItem = ({ index, music, isPlayList, addMusic, removeMusic, playListMu
   }
   
   const renderPlayMusicBtn = () => {
-    const playMusic = isPlayList ? playPlayistMusic : playListMusic;
+    const musicListSource = isPlayList ? 'playlist' : 'list';
     return (
-      <div onClick={playMusic(music.id)} className="musicPlayerContainer" style={styles.playerBtn}>
+      <div onClick={playMusic(music.id, musicListSource)} className="musicPlayerContainer" style={styles.playerBtn}>
         <i className="fa fa-2x fa-play-circle" aria-hidden="true"></i>
       </div>
     );

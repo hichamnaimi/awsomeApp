@@ -1,10 +1,8 @@
 import fetch from 'cross-fetch';
-import musicSound from '../helpers/musicSound';
 import {
   FETCH_MUSIC,
   FETCH_MUSIC_SUCCESS,
   FETCH_MUSIC_FAILURE,
-  PLAY_LIST_MUSIC
 } from '../actionTypes/musicList';
 
 
@@ -41,21 +39,3 @@ export const fetchMusicIfNeeds = () => {
     return musicList;
   }
 }
-
-const changeOrderOfPlayedMusic = (id) => {
-  return {
-    type: PLAY_LIST_MUSIC,
-    payload: id
-  }
-}
-
-export const playListMusic = (id) => {
-  return (dispatch) => {
-    return fetch(`http://localhost:4000/music/${id}`)
-      .then(result => result.arrayBuffer())
-      .then((buffer) => {
-        musicSound.play(buffer);
-        dispatch(changeOrderOfPlayedMusic(id));
-      });
-  }
-};
