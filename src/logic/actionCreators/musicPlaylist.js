@@ -1,13 +1,5 @@
 import musicSound from '../helpers/musicSound';
-import {
-  ADD_MUSIC,
-  REMOVE_MUSIC,
-  CHANGE_PLAYING_MUSIC_ORDER,
-  PLAY_MUSIC,
-  HIGHTLIGHT_PLAYING_MUSIC
-} from '../actionTypes/musicPlaylist';
-
-let currentMusicId = null;
+import { ADD_MUSIC, REMOVE_MUSIC } from '../actionTypes/musicPlaylist';
 
 export const addMusic = (music) => ({
   type: ADD_MUSIC,
