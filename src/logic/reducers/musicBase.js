@@ -4,12 +4,12 @@
 
 // Turn on/off a music in a giving list
 const toggleHighlightMusic = (musicList, id, isPlaying) => {
-  const concernedMusicIndex = musicList.findIndex((music) => music.id === id);
-  if (concernedMusicIndex !== -1) {
+  const musicToToggle = musicList.findIndex((music) => music.id === id);
+  if (musicToToggle !== -1) {
     return [
-      ...musicList.slice(0,concernedMusicIndex),
-      {...musicList[concernedMusicIndex], isPlaying },
-      ...musicList.slice(concernedMusicIndex + 1)
+      ...musicList.slice(0,musicToToggle),
+      {...musicList[musicToToggle], isPlaying },
+      ...musicList.slice(musicToToggle + 1)
     ];
   }
   return musicList;
@@ -17,12 +17,12 @@ const toggleHighlightMusic = (musicList, id, isPlaying) => {
 
 // Turn off any (active) music in a given list
 const downlightAnyPlayingMusic = (musicList, id) => {
-  const concernedMusicIndex = musicList.findIndex((music) => music.id === id);
-  if (concernedMusicIndex !== -1) {
+  const activeMusicIndex = musicList.findIndex((music) => music.isPlaying);
+  if (activeMusicIndex !== -1) {
     return [
-      ...musicList.slice(0,concernedMusicIndex),
-      {...musicList[concernedMusicIndex], isPlaying: false },
-      ...musicList.slice(concernedMusicIndex + 1)
+      ...musicList.slice(0,activeMusicIndex),
+      {...musicList[activeMusicIndex], isPlaying: false },
+      ...musicList.slice(activeMusicIndex + 1)
     ];
   }
   return musicList;
