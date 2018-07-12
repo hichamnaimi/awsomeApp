@@ -36,6 +36,7 @@ export const musicSound = (() => {
               afterEachMusicCallback(currentMusicId);
               _autoPlayMusic(nextMusic.value.id, `http://localhost:4000/music/${nextMusic.value.id}`);
             }
+            afterEachMusicCallback(currentMusicId);
           };
         });
       };
