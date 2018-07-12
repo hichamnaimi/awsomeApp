@@ -14,7 +14,10 @@ export const addMusic = (music) => ({
   payload: music
 });
 
-export const removeMusic = (id) => ({
-  type: REMOVE_MUSIC,
-  payload: id
-});
+export const removeMusic = (id) => {
+  musicSound.stop();
+  return {
+    type: REMOVE_MUSIC,
+    payload: id
+  }
+};
