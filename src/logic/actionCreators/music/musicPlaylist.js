@@ -1,5 +1,5 @@
-import musicSound from '../helpers/musicSound';
-import { ADD_MUSIC, REMOVE_MUSIC } from '../actionTypes/musicPlaylist';
+import musicSound from '../../helpers/musicSound';
+import { ADD_MUSIC, REMOVE_MUSIC } from '../../actionTypes/music/musicPlaylist';
 
 export const addMusic = (music) => ({
   type: ADD_MUSIC,

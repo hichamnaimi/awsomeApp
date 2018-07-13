@@ -3,7 +3,7 @@ import {
   FETCH_MUSIC,
   FETCH_MUSIC_SUCCESS,
   FETCH_MUSIC_FAILURE,
-} from '../actionTypes/musicList';
+} from '../../actionTypes/music/musicList';
 
 
 const fetchMusic = () => ({

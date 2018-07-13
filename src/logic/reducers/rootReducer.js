@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import musicList from '../reducers/musicList';
-import musicPlaylist from '../reducers/musicPlaylist';
+import musicList from '../reducers/music/musicList';
+import musicPlaylist from '../reducers/music/musicPlaylist';
 
 const rootReducer = combineReducers({
   musicList,

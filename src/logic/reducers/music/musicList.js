@@ -1,9 +1,5 @@
-import {
-  FETCH_MUSIC,
-  FETCH_MUSIC_SUCCESS,
-  FETCH_MUSIC_FAILURE,
-} from '../actionTypes/musicList';
-import { CHANGE_PLAYING_MUSIC_ORDER, HIGHTLIGHT_PLAYING_MUSIC } from '../actionTypes/musicBase';
+import { FETCH_MUSIC, FETCH_MUSIC_SUCCESS, FETCH_MUSIC_FAILURE } from '../../actionTypes/music/musicList';
+import { CHANGE_PLAYING_MUSIC_ORDER, HIGHTLIGHT_PLAYING_MUSIC } from '../../actionTypes/music/musicBase';
 import musicBaseReducer from './musicBase';
 
 const changePlayingMusicOrder = (musicList, { id, source }) => {

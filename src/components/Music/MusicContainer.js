@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMusicIfNeeds } from '../../logic/actionCreators/musicList';
-import { addMusic, removeMusic } from '../../logic/actionCreators/musicPlaylist';
-import { playMusic } from '../../logic/actionCreators/musicBase';
+import { fetchMusicIfNeeds } from '../../logic/actionCreators/music/musicList';
+import { addMusic, removeMusic } from '../../logic/actionCreators/music/musicPlaylist';
+import { playMusic } from '../../logic/actionCreators/music/musicBase';
 
 import MusicList from './MusicList';
 import MusicPlayList from './MusicPlaylist';
@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchMusicIfNeeds: () => dispatch(fetchMusicIfNeeds()),
   addMusic: (music) => () => dispatch(addMusic(music)),
   removeMusic: (id) => () => dispatch(removeMusic(id)),
-  playMusic: (id, source='list') => () => dispatch(playMusic({ id, source }))
+  playMusic: (id, source) => () => dispatch(playMusic({ id, source }))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MusicContainer);

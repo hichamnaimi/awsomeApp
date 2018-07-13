@@ -1,8 +1,5 @@
-import {
-  CHANGE_PLAYING_MUSIC_ORDER,
-  HIGHTLIGHT_PLAYING_MUSIC
-} from '../actionTypes/musicBase';
-import musicSound from '../helpers/musicSound';
+import { CHANGE_PLAYING_MUSIC_ORDER, HIGHTLIGHT_PLAYING_MUSIC } from '../../actionTypes/music/musicBase';
+import musicSound from '../../helpers/musicSound';
 
 const changePlayingMusicOrder = ({ id, source }) => {
   return {

@@ -1,5 +1,5 @@
-import { ADD_MUSIC, REMOVE_MUSIC } from '../actionTypes/musicPlaylist';
-import { CHANGE_PLAYING_MUSIC_ORDER, HIGHTLIGHT_PLAYING_MUSIC } from '../actionTypes/musicBase';
+import { ADD_MUSIC, REMOVE_MUSIC } from '../../actionTypes/music/musicPlaylist';
+import { CHANGE_PLAYING_MUSIC_ORDER, HIGHTLIGHT_PLAYING_MUSIC } from '../../actionTypes/music/musicBase';
 import musicBaseReducer from './musicBase';
 
 const addMusicIfUnique = (state, musicToAdd) => {
