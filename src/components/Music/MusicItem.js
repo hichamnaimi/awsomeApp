@@ -33,11 +33,15 @@ const styles = {
     color: 'rgb(47, 54, 58)',
     cursor: 'pointer',
   },
+  playing: {
+    border: '3px solid #60908f',
+    borderRadius: '5px'
+  }
 }
 
 const MusicItem = ({ index, music, isPlayList, addMusic, removeMusic, playMusic }) => {
-  const strippedStyle = index % 2 === 0 ? {backgroundColor: '#dedede'} : {backgroundColor: 'white'};
-  const playingStyle = music.isPlaying ? {border: '2px solid red'} : {border: 'none'};
+  const strippedStyle = index % 2 === 0 ? { backgroundColor: '#dedede' } : { backgroundColor: 'white' };
+  const playingStyle = music.isPlaying ? styles.playing : { border: 'none' };
   const renderAddMusicBtn = () => {
     return (
       <div onClick={addMusic(music)} style={styles.addPlaylistBtn}>

@@ -17,7 +17,7 @@ const Navigation = (props) => {
     props.history.push(route);
   }
   const applyActiveStyle = (route) => {
-    return route === props.location.pathname ? {background: 'rgb(5, 118, 175)'} : { background: 'none' };
+    return route === props.location.pathname ? {background: '#00aaff'} : { background: 'none' };
   }
   return (
     <div>

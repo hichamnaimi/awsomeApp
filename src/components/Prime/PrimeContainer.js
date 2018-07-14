@@ -1,5 +1,20 @@
 import React, { Component } from 'react';
 import PrimeHistory from './PrimeHistory'
+import PrimeCalculator from './PrimeCalculator'
+import PrimeResultDisplayer from './PrimeResultDisplayer'
+
+const styles = {
+  container: {
+    width: '90%',
+    margin: '1% auto'
+  },
+  calculationContainer: {
+    float: 'left',
+    width: '25%',
+    display: 'flex',
+    flexDirection: 'column'
+  }
+}
 
 const savePrimeHistory = (history) => {
   localStorage.setItem("primeHistory", JSON.stringify(history));
@@ -61,7 +76,8 @@ class PrimeContainer extends Component {
   feedHistory = (nPrimeInputValue, result) => {
     const content = {
       id: +Date.now(),
-      message: `${nPrimeInputValue}ème nombre premier: ${result}`
+      message: `${nPrimeInputValue}ème nombre premier: `,
+      value: result
     };
     const newHistory = [content, ...this.state.history];
     this.setState({ history: newHistory });
@@ -83,20 +99,21 @@ class PrimeContainer extends Component {
   }
 
   render() {
+    console.log(this.state.primeNumber)
     return (
-      <div>
-        <div className="calculator">
-          <input type="number" placeholder="N-ième nombre premier" ref={this.inputRef} />
-          <button onClick={this.calculateNPrimeNumber}>Calculer</button>
-        </div>
-        <div className="resultDisplayer">
-          { this.state.primeNumber }
-        </div>
-        <div className="history">
-          <PrimeHistory
-            history={this.state.history}
+      <div style={styles.container}>
+        <div style={styles.calculationContainer}>
+          <PrimeCalculator
+            ref={this.inputRef}
+            calculateNPrimeNumber={this.calculateNPrimeNumber}
+          />
+          <PrimeResultDisplayer
+            primeNumber={this.state.primeNumber}
           />
         </div>
+        <PrimeHistory
+          history={this.state.history}
+        />
       </div>
     );
   }

@@ -39,13 +39,13 @@ class MusicPlaylist extends Component {
   }
 
   render() {
-    return (
+    return this.props.musicPlayListItems.length > 0 && (
       <div style={{ width: '40%' }}>
         <div style={styles.title}>
           <i style={styles.tileIcon} className="far fa-2x fa-heart"></i>
           <Typography variant="headline">Favorite playlist</Typography>
         </div>
-        <div style={{  }}>
+        <div>
           {this.renderMusicItems()}
         </div>
       </div>

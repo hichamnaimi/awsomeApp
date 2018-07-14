@@ -9,7 +9,7 @@ import MusicPlayList from './MusicPlaylist';
 
 const styles = {
   container: {
-    width: '98%',
+    width: '97%',
     margin: '1% auto',
     display: 'flex',
     justifyContent:' space-between'
