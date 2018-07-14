@@ -7,6 +7,14 @@ import { playMusic } from '../../logic/actionCreators/music/musicBase';
 import MusicList from './MusicList';
 import MusicPlayList from './MusicPlaylist';
 
+const styles = {
+  container: {
+    width: '98%',
+    margin: '1% auto',
+    display: 'flex',
+    justifyContent:' space-between'
+  }
+}
 const savePlaylist = (playlist) => {
   localStorage.setItem("playlist", JSON.stringify(playlist));
 }
@@ -38,8 +46,7 @@ class MusicContainer extends Component {
 
   render() {
     return (
-      <div>
-        <h1>List</h1>
+      <div style={styles.container}>
         <MusicList
           musicListItems={this.props.musicList.items}
           addMusic={this.props.addMusic}

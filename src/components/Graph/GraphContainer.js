@@ -41,6 +41,18 @@ const options = {
     text: 'Comptabilité 2016',
     fontSize: 25
   },
+  elements: {
+    line: {
+        tension: 0
+    }
+  },
+  animation: {
+    duration: 0,
+  },
+  hover: {
+    animationDuration: 0,
+  },
+  responsiveAnimationDuration: 0,
   pointRadius: 1,
   lineTension: 0.1,
   responsive: true,

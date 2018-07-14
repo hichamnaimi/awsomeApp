@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import MusicItem from './MusicItem';
+import { Typography } from '@material-ui/core';
 
+const styles = {
+  title: {
+    display: 'flex',
+    margin: ' 3% 0px'
+  },
+  tileIcon: {
+    color: '#445258',
+    marginRight: '2%',
+  }
+}
 class MusicList extends Component {
   constructor(props) {
     super(props);
@@ -31,8 +42,11 @@ class MusicList extends Component {
     //overflowY: scroll
     return (
       <div style={{ width: '40%' }} className="musicList">
-        <h2>Hole List of shit</h2>
-        <div style={{  }} className="musicListItems">
+        <div style={styles.title}>
+          <i style={styles.tileIcon} className="fas fa-2x fa-list"></i>
+          <Typography variant="headline">Music List</Typography>
+        </div>
+        <div className="musicListItems">
           {this.renderMusicListItems()}
         </div>
       </div>

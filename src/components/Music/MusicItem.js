@@ -4,35 +4,43 @@ const styles = {
   container: {
     display: 'flex',
     marginBottom: '1%',
-    padding: '1.5% 0'
+    padding: '1.5% 2%',
+    margin: '0'
   },
   infosContainer: {
     flex: '13'
   },
   title: {
-    margin: 0
+    margin: 0,
+    fontSize: '1.2em'
   },
   description: {
-    fontSize: '0.8em',
+    fontSize: '1em',
     margin: 0,
-    fontStyle: 'italic'
+    fontStyle: 'oblique',
+    color: '#353535'
+  },
+  playBtn: {
+    color: 'rgb(47, 54, 58)',
+    cursor: 'pointer',
+    marginLeft: '2%'
   },
   addPlaylistBtn: {
-    flex: '1',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    color: 'rgb(47, 54, 58)'
   },
-  playerBtn: {
-    flex: '1',
-    cursor: 'pointer'
+  removeBtn: {
+    color: 'rgb(47, 54, 58)',
+    cursor: 'pointer',
   },
 }
 
 const MusicItem = ({ index, music, isPlayList, addMusic, removeMusic, playMusic }) => {
-  const strippedStyle = index % 2 === 0 ? {backgroundColor: '#efefef'} : {backgroundColor: 'white'};
+  const strippedStyle = index % 2 === 0 ? {backgroundColor: '#dedede'} : {backgroundColor: 'white'};
   const playingStyle = music.isPlaying ? {border: '2px solid red'} : {border: 'none'};
   const renderAddMusicBtn = () => {
     return (
-      <div onClick={addMusic(music)} className="musicPlayerContainer" style={styles.addPlaylistBtn}>
+      <div onClick={addMusic(music)} style={styles.addPlaylistBtn}>
         <i className="fa fa-2x fa-plus" aria-hidden="true"></i>
       </div>
     );
@@ -41,7 +49,7 @@ const MusicItem = ({ index, music, isPlayList, addMusic, removeMusic, playMusic 
   const renderPlayMusicBtn = () => {
     const musicListSource = isPlayList ? 'playlist' : 'list';
     return (
-      <div onClick={playMusic(music.id, musicListSource)} className="musicPlayerContainer" style={styles.playerBtn}>
+      <div onClick={playMusic(music.id, musicListSource)} style={styles.playBtn}>
         <i className="fa fa-2x fa-play-circle" aria-hidden="true"></i>
       </div>
     );
@@ -49,7 +57,7 @@ const MusicItem = ({ index, music, isPlayList, addMusic, removeMusic, playMusic 
   
   const renderRemoveMusicBtn = () => {
     return (
-      <div onClick={removeMusic(music.id)} className="musicPlayerContainer" style={styles.playerBtn}>
+      <div onClick={removeMusic(music.id)} style={styles.removeBtn}>
         <i className="fa fa-2x fa-times" aria-hidden="true"></i>
       </div>
     );

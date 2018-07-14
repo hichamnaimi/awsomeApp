@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from '../logic/reducers/rootReducer';
-import Navigation from './Navigation';
+import Header from './Header';
 import MusicContainer from '../components/Music/MusicContainer';
 import PrimeContainer from '../components/Prime/PrimeContainer';
 import GraphContainer from '../components/Graph/GraphContainer';
@@ -24,14 +24,14 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Navigation>
+        <Header>
           <Switch>
             <Route exact path='/' component={Welcome} />
             <Route path='/music' component={MusicContainer} />
             <Route path='/prime' component={PrimeContainer} />
             <Route path='/graph' component={GraphContainer} />
           </Switch>
-        </Navigation>
+        </Header>
       </Router>
     </Provider>
   )
