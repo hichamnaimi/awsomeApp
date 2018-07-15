@@ -39,7 +39,6 @@ class MusicList extends Component {
   }
 
   render() {
-    //overflowY: scroll
     return (
       <div style={{ width: '40%' }} className="musicList">
         <div style={styles.title}>

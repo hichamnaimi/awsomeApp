@@ -44,6 +44,7 @@ A built from scratch media player reading stream music from a server.
 - Music is played.
 - Music is set to the top of the playlist.
 - Music is highlighted.
+- Music can be stopped with stop button.
 - When playing another music, the current playing music loses its focus and it's stopped.
 - When current music finish playing, the next one in the list starts automatically.
 

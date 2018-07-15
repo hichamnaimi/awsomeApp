@@ -34,7 +34,7 @@ const styles = {
     cursor: 'pointer',
   },
   playing: {
-    border: '3px solid #ff0000',
+    border: '2px solid #ff0000',
     borderRadius: '5px'
   }
 }
@@ -52,9 +52,10 @@ const MusicItem = ({ index, music, isPlayList, addMusic, removeMusic, playMusic 
   
   const renderPlayMusicBtn = () => {
     const musicListSource = isPlayList ? 'playlist' : 'list';
+    const musicIcon = music.isPlaying ? 'fa-stop-circle' : 'fa-play-circle';
     return (
       <div onClick={playMusic(music.id, musicListSource)} style={styles.playBtn}>
-        <i className="fa fa-2x fa-play-circle" aria-hidden="true"></i>
+        <i className={`fas fa-2x ${musicIcon}`} aria-hidden="true"></i>
       </div>
     );
   }
