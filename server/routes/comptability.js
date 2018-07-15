@@ -5,7 +5,7 @@ const path = require('path');
 const csvParser = require('csv-parser');
 
 const COMPTABILITY_FOLDER_PATH = path.join(__dirname, '../data');
-const csvStreamData = [];
+let csvStreamData = [];
 
 const formatCsvResult = (csvResult) => {
   const formatedData = csvResult.reduce((current, next) => {
@@ -61,6 +61,7 @@ router.get('/', (req, res) => {
       })
       .on('end', (_) => {
         const result = formatCsvResult(csvStreamData);
+        csvStreamData = [];
         res.json(result);
       });
   }

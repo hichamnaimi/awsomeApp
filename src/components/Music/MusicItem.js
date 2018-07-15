@@ -34,7 +34,7 @@ const styles = {
     cursor: 'pointer',
   },
   playing: {
-    border: '3px solid #60908f',
+    border: '3px solid #ff0000',
     borderRadius: '5px'
   }
 }

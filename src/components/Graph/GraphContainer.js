@@ -3,6 +3,12 @@ import { Line } from 'react-chartjs-2';
 import { connect } from 'react-redux'; 
 import { fetchComptabilityIfNeeds } from '../../logic/actionCreators/comptability/comptability'
 
+const styles = {
+  container: {
+    marginTop: '5%'
+  }
+}
+
 const fillGraphData = (comptabilityData = {}) => {
   return {
     labels: comptabilityData.date,
@@ -41,16 +47,10 @@ const options = {
     text: 'Comptabilité 2016',
     fontSize: 25
   },
-  elements: {
-    line: {
-        tension: 0
+  layout: {
+    margin: {
+      top: 500
     }
-  },
-  animation: {
-    duration: 0,
-  },
-  hover: {
-    animationDuration: 0,
   },
   responsiveAnimationDuration: 0,
   pointRadius: 1,
@@ -81,12 +81,14 @@ class GraphContainer extends Component {
   render() {
     const data = this.props.comptabilityData.data.length ? fillGraphData(...this.props.comptabilityData.data) : {};
     return (
-      <Line
+      <div style={styles.container}>
+        <Line
           data={data}
           width={100}
-          height={50}
+          height={600}
           options={options}
       />
+      </div>
     );
   }
 }

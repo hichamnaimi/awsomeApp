@@ -1,14 +1,22 @@
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, withStyles, Button} from '@material-ui/core';
 
 const styles = {
   headerTitle: {
-    flex: 1
+    flex: 1,
+    display: 'flex',
+    alignItems: 'center'
+  },
+  headerIcon: {
+    marginRight: '5%'
+  },
+  container: {
+    flex: '6'
   },
   navBtn: {
     color: 'white',
-    textDecoration: 'none'
+    textDecoration: 'none',
   }
 }
 
@@ -20,7 +28,7 @@ const Navigation = (props) => {
     return route === props.location.pathname ? {background: '#00aaff'} : { background: 'none' };
   }
   return (
-    <div>
+    <div style={styles.container}>
       <Button
         onClick={handleNavigation("/music")} style={applyActiveStyle("/music")} size="large" color="inherit">
         Music
@@ -42,7 +50,7 @@ const Header = (props) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="title" color="inherit" className={classes.headerTitle}>
-            Welcome to Awsome
+          <i className="fas fa-2x fa-sun" style={styles.headerIcon}></i> Awsome !
           </Typography>
           <Navigation {...props}/>
         </Toolbar>

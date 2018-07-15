@@ -11,8 +11,10 @@ const styles = {
   calculationContainer: {
     float: 'left',
     width: '25%',
+    marginTop: '2%',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    background: '#f9f9f9'
   }
 }
 
@@ -99,7 +101,6 @@ class PrimeContainer extends Component {
   }
 
   render() {
-    console.log(this.state.primeNumber)
     return (
       <div style={styles.container}>
         <div style={styles.calculationContainer}>
