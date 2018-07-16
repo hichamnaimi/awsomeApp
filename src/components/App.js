@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from '../logic/reducers/rootReducer';
+import { Typography } from '@material-ui/core';
 import Header from './Header';
 import MusicContainer from '../components/Music/MusicContainer';
 import PrimeContainer from '../components/Prime/PrimeContainer';
@@ -18,7 +19,11 @@ const store = createStore(rootReducer,
   )
 );
 
-const Welcome = () => <h1>Welcome</h1>
+const Welcome = () => (
+  <div style={{ width: '60%', margin: 'auto', paddingTop: '10%' }}>
+    <Typography variant="display3">You launched awsome ! let's GO </Typography>
+  </div>
+)
 
 const App = () => {
   return (
